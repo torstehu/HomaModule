@@ -51,14 +51,14 @@
 #include <ws_version.h>
 
 #ifndef VERSION
-#define VERSION "0.0.1"
+#define VERSION "0.0.2"
 #endif
 
 WS_DLL_PUBLIC_DEF const gchar plugin_version[] = VERSION;
 WS_DLL_PUBLIC_DEF const int plugin_want_major = WIRESHARK_VERSION_MAJOR;
 WS_DLL_PUBLIC_DEF const int plugin_want_minor = WIRESHARK_VERSION_MINOR;
 
-#define HOMA_PROTO 0xFD
+#define HOMA_PROTO 0x92
 
 #define HOMA_HEADER_TYPE_OFFSET 13
 #define HOMA_DATA_PACKET 0x10
@@ -114,7 +114,7 @@ static int dissect_homa(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree _U_,
 	/* Clear the info column */
 	col_clear(pinfo->cinfo, COL_INFO);
 	gint header_length = COMMON_HEADER_LENGTH;
-	gint homa_packet_type = tvb_get_guint8(tvb, HOMA_HEADER_TYPE_OFFSET);
+	gint homa_packet_type = tvb_get_uint8(tvb, HOMA_HEADER_TYPE_OFFSET);
 	switch (homa_packet_type) { // Calculate Length of Header depending on the header type
 	case HOMA_DATA_PACKET:
 		header_length += DATA_HEADER_LENGTH;
@@ -396,6 +396,8 @@ static void proto_reg_handoff_homa(void)
 
 	homa_handle = create_dissector_handle(dissect_homa, proto_homa);
 	dissector_add_uint("ip.proto", HOMA_PROTO, homa_handle);
+	//dissector_add_uint("ip.proto", 0xFD, homa_handle); // dissect experimental traffic
+	dissector_add_uint("ipv6.nxt", HOMA_PROTO, homa_handle);
 }
 
 WS_DLL_PUBLIC void plugin_register(void)

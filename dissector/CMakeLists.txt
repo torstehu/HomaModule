@@ -40,9 +40,9 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.5)
 
-project(HomaDissector VERSION 0.0.1 DESCRIPTION "Wireshark Homa Plugin" LANGUAGES C)
+project(HomaDissector VERSION 0.0.2 DESCRIPTION "Wireshark Homa Plugin" LANGUAGES C)
 option(INSTALL_PLUGIN_LOCAL "Install the homa dissector plugin inside the local folder of wireshark" ON)
 
 find_package(Wireshark CONFIG REQUIRED)

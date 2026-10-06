@@ -1,7 +1,13 @@
 # HOMA Dissector
 
-A dissector for viewing [homa](https://homa-transport.atlassian.net/wiki/spaces/HOMA/overview) packets. The dissector
-was tested with Ubuntu 18.04 and Ubuntu 22.04 with the Wireshark version 3.6.2
+A dissector for viewing [homa](https://homa-transport.atlassian.net/wiki/spaces/HOMA/overview) packets.
+
+## Testing Matrix
+
+| OS  | Wireshark version |
+| ------------- | ------------- |
+| Arch Linux  |  v4.6.9 |
+| Ubuntu 24.04  | v4.4.7  |
 
 ## Prerequisites
 
